@@ -26,4 +26,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function avatar()
+    {
+        return $this->hasOne(Image::class, 'id', 'avatar_id');
+    }
+
+    public function getAvatarPath()
+    {
+        if (!$this->avatar) {
+            return null;
+        }
+        return $this->avatar->path();
+    }
 }
