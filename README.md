@@ -1,4 +1,4 @@
 # AvatarUploadCmp
 Avatar upload component
 
-Laravel
+Laravel / Vue

@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
+    Route::post('avatar', 'AvatarController@store')->name('account.avatar.store');
+});
