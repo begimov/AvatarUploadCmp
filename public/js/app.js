@@ -31781,7 +31781,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), (_vm.errors[this.sendAs]) ? _c('div', {
     staticClass: "help-block"
-  }, [_vm._v("\n      " + _vm._s(_vm.errors[this.sendAs][0]) + "\n    ")]) : _vm._e()]), _vm._v(" "), (_vm.avatar.id) ? _c('div', [_c('input', {
+  }, [_vm._v("\n      " + _vm._s(_vm.errors[this.sendAs][0]) + "\n    ")]) : _vm._e()]), _vm._v(" "), (_vm.avatar.path) ? _c('div', [_c('input', {
     attrs: {
       "type": "hidden",
       "name": "avatar_id"

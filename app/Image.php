@@ -13,6 +13,11 @@ class Image extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function path()
     {
         return config('custom.image.path.relative') . $this->path;

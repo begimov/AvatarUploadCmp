@@ -27,9 +27,10 @@ class AvatarController extends Controller
           ->save(config('custom.image.path.absolute') . $path = '/' . uniqid(true) . '.png');
           //instead of saving img locally can save to the cloud here
 
-        $image = Image::create([
-          'path' => $path
-        ]);
+        $image = new Image;
+        $image->path = $path;
+        $image->user()->associate($req->user());
+        $image->save();
 
         return response([
           'data' => [

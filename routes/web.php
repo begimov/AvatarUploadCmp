@@ -20,6 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
-Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
-    Route::post('avatar', 'AvatarController@store')->name('account.avatar.store');
+Route::group([
+      'namespace' => 'Account',
+      'prefix' => 'account',
+      'middleware' => 'auth'
+    ], function () {
+      Route::post('avatar', 'AvatarController@store')->name('account.avatar.store');
+      Route::patch('', 'AccountController@update')->name('account.update');
 });

@@ -8,7 +8,7 @@
         {{ errors[this.sendAs][0] }}
       </div>
     </div>
-    <div v-if="avatar.id">
+    <div v-if="avatar.path">
       <input type="hidden" name="avatar_id" :value="avatar.id">
       <img class="avatar" alt="Avatar" :src="avatar.path">
     </div>

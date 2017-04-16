@@ -8,11 +8,11 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    <form action="" method="post">
+                    <form action="{{ route('account.update') }}" method="post">
                       {{ csrf_field() }}
                       {{ method_field('PATCH') }}
                       <div class="form-group">
-                        <avatarupload endpoint="{{ route('account.avatar.store')}}" send-as="image" current-avatar="{{ Auth::user()->getAvatarPath() }}"></avatarupload>
+                        <avatarupload endpoint="{{ route('account.avatar.store') }}" send-as="image" current-avatar="{{ Auth::user()->getAvatarPath() }}"></avatarupload>
                       </div>
                       <div class="form-group">
                         <label for="name">Name</label>
