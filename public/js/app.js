@@ -12106,6 +12106,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12123,7 +12124,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_upload__["a" /* default */]],
   methods: {
     fileChange: function fileChange(e) {
-      this.upload(e);
+      var _this = this;
+
+      this.upload(e).then(function (res) {
+        _this.avatar.path = res.data.data.path;
+        _this.avatar.id = res.data.data.id;
+      }).catch(function (err) {
+        if (err.response.status === 422) {
+          _this.errors = err.response.data;
+          return;
+        }
+        _this.errors = 'Error occurred while processing your avatar, please try again';
+      });
     }
   }
 });
@@ -31750,34 +31762,41 @@ module.exports = function normalizeComponent (
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "avatar"
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors[this.sendAs]
     }
-  }, [_vm._v("Avatar")]), _vm._v(" "), _c('input', {
+  }, [_c('label', {
+    staticClass: "control-label",
     attrs: {
-      "type": "file"
+      "for": _vm.sendAs
+    }
+  }, [_vm._v("Avatar")]), _vm._v(" "), (_vm.uploading) ? _c('div', [_vm._v("Uploading...")]) : _c('input', {
+    attrs: {
+      "type": "file",
+      "name": _vm.sendAs
     },
     on: {
       "change": _vm.fileChange
     }
-  }), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), (_vm.errors[this.sendAs]) ? _c('div', {
     staticClass: "help-block"
-  }, [_vm._v("\n      Help\n    ")])]), _vm._v(" "), _vm._m(0)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('input', {
+  }, [_vm._v("\n      " + _vm._s(_vm.errors[this.sendAs][0]) + "\n    ")]) : _vm._e()]), _vm._v(" "), (_vm.avatar.id) ? _c('div', [_c('input', {
     attrs: {
       "type": "hidden",
       "name": "avatar_id"
+    },
+    domProps: {
+      "value": _vm.avatar.id
     }
   }), _vm._v(" "), _c('img', {
     staticClass: "avatar",
     attrs: {
-      "alt": "Avatar"
+      "alt": "Avatar",
+      "src": _vm.avatar.path
     }
-  })])
-}]}
+  })]) : _vm._e()])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -41174,7 +41193,7 @@ module.exports = __webpack_require__(11);
         }
     },
     data: function data() {
-        return { uploading: true };
+        return { uploading: false };
     },
 
     methods: {

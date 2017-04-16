@@ -9,7 +9,7 @@ export default {
         }
     },
     data() {
-        return {uploading: true}
+        return {uploading: false}
     },
     methods : {
         upload (e) {
